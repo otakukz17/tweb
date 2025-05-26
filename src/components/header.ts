@@ -32,7 +32,7 @@ export default class Header {
     const logoIcon = document.createElement('div');
     logoIcon.classList.add('header-logo-icon');
     logoIcon.innerHTML = `
-      <img src="./logo.svg" alt="Telegram" width="129" height="23" />
+      <img src="/logo.svg" alt="Telegram" width="129" height="23" />
     `;
 
     logoContainer.append(logoIcon);
