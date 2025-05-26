@@ -41,6 +41,40 @@ const onFirstMount = async() => {
 
   const container = imageDiv.parentElement;
 
+  // Создаем новые элементы с кастомным текстом
+  const telegramWebTitle = document.createElement('h1');
+  telegramWebTitle.classList.add('telegram-web-title');
+  telegramWebTitle.textContent = 'Telegram Web';
+
+  const telegramWebSubtitle = document.createElement('p');
+  telegramWebSubtitle.classList.add('telegram-web-subtitle');
+  telegramWebSubtitle.textContent = 'Неофициальная веб-версия популярного мессенджера Телеграм на русском языке';
+
+  const qrAuthLink = document.createElement('a');
+  qrAuthLink.classList.add('qr-auth-link');
+  qrAuthLink.textContent = 'как авторизоваться через QR';
+  qrAuthLink.href = '#';
+  qrAuthLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Уже на странице QR, можно оставить пустым или добавить справку
+  });
+
+  // Создаем футер с информацией
+  const footerInfo = document.createElement('div');
+  footerInfo.classList.add('footer-info');
+
+  const versionInfo = document.createElement('span');
+  versionInfo.classList.add('version-info');
+  versionInfo.textContent = 'Unofficial Telegram Web Client Version 1.0.0.1';
+
+  const privacyLink = document.createElement('a');
+  privacyLink.classList.add('privacy-link');
+  privacyLink.textContent = 'Политика конфиденциальности';
+  privacyLink.href = '#';
+
+  footerInfo.append(versionInfo, privacyLink);
+
+  // Стандартные элементы (скрыты через CSS)
   const h4 = document.createElement('h4');
   _i18n(h4, 'Login.QR.Title');
 
@@ -52,7 +86,18 @@ const onFirstMount = async() => {
     helpList.append(li);
   });
 
-  container.append(h4, helpList, inputWrapper);
+  // Добавляем заголовки перед QR кодом
+  container.insertBefore(telegramWebTitle, imageDiv);
+  container.insertBefore(telegramWebSubtitle, imageDiv);
+  container.insertBefore(qrAuthLink, imageDiv);
+
+  // Добавляем остальные элементы после QR кода
+  container.append(
+    h4,
+    helpList,
+    inputWrapper,
+    footerInfo
+  );
 
   btnBack.addEventListener('click', () => {
     import('./pageSignIn').then((m) => m.default.mount());

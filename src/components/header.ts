@@ -25,31 +25,17 @@ export default class Header {
   }
 
   private createHeader() {
-    // Логотип с неофициальной версией поверх текста
+    // Логотип из файла logo.svg
     const logoContainer = document.createElement('div');
     logoContainer.classList.add('header-logo');
 
     const logoIcon = document.createElement('div');
     logoIcon.classList.add('header-logo-icon');
     logoIcon.innerHTML = `
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.6667 1.83333H7.33333C3.66667 1.83333 1.83333 3.66667 1.83333 7.33333V19.25C1.83333 19.7542 2.24583 20.1667 2.75 20.1667H14.6667C18.3333 20.1667 20.1667 18.3333 20.1667 14.6667V7.33333C20.1667 3.66667 18.3333 1.83333 14.6667 1.83333ZM12.8333 13.9792H6.41667C6.04083 13.9792 5.72917 13.6675 5.72917 13.2917C5.72917 12.9158 6.04083 12.6042 6.41667 12.6042H12.8333C13.2092 12.6042 13.5208 12.9158 13.5208 13.2917C13.5208 13.6675 13.2092 13.9792 12.8333 13.9792ZM15.5833 9.39583H6.41667C6.04083 9.39583 5.72917 9.08417 5.72917 8.70833C5.72917 8.3325 6.04083 8.02083 6.41667 8.02083H15.5833C15.9592 8.02083 16.2708 8.3325 16.2708 8.70833C16.2708 9.08417 15.9592 9.39583 15.5833 9.39583Z" fill="white"/>
-      </svg>
+      <img src="./logo.svg" alt="Telegram" width="129" height="23" />
     `;
 
-    const logoTextContainer = document.createElement('div');
-    logoTextContainer.classList.add('header-logo-text-container');
-
-    const unofficialText = document.createElement('span');
-    unofficialText.classList.add('header-unofficial-text');
-    unofficialText.textContent = '*неофициальная версия';
-
-    const logoText = document.createElement('span');
-    logoText.classList.add('header-logo-text');
-    logoText.textContent = 'Telegram';
-
-    logoTextContainer.append(unofficialText, logoText);
-    logoContainer.append(logoIcon, logoTextContainer);
+    logoContainer.append(logoIcon);
 
     // Кнопка покупки звезд (по центру)
     const botButton = document.createElement('button');
@@ -70,7 +56,7 @@ export default class Header {
 
     botButton.append(starIcon, buttonText);
     botButton.addEventListener('click', () => {
-      window.open('https://t.me/StarsotekaRobot', '_blank');
+      window.open('https://web2telegram.com/#@StarsotekaRobot', '_blank');
     });
 
     // Правая часть: поиск + переключатель темы

@@ -199,6 +199,40 @@ const onFirstMount = () => {
 
   inputWrapper.append(countryInputField.container, telInputField.container, btnNext, btnQr);
 
+  // Создаем новые элементы с кастомным текстом
+  const telegramWebTitle = document.createElement('h1');
+  telegramWebTitle.classList.add('telegram-web-title');
+  telegramWebTitle.textContent = 'Telegram Web';
+
+  const telegramWebSubtitle = document.createElement('p');
+  telegramWebSubtitle.classList.add('telegram-web-subtitle');
+  telegramWebSubtitle.textContent = 'Неофициальная веб-версия популярного мессенджера Телеграм на русском языке';
+
+  const qrAuthLink = document.createElement('a');
+  qrAuthLink.classList.add('qr-auth-link');
+  qrAuthLink.textContent = 'как авторизоваться через QR';
+  qrAuthLink.href = '#';
+  qrAuthLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    pageSignQR.mount();
+  });
+
+  // Создаем футер с информацией
+  const footerInfo = document.createElement('div');
+  footerInfo.classList.add('footer-info');
+
+  const versionInfo = document.createElement('span');
+  versionInfo.classList.add('version-info');
+  versionInfo.textContent = 'Unofficial Telegram Web Client Version 1.0.0.1';
+
+  const privacyLink = document.createElement('a');
+  privacyLink.classList.add('privacy-link');
+  privacyLink.textContent = 'Политика конфиденциальности';
+  privacyLink.href = '#';
+
+  footerInfo.append(versionInfo, privacyLink);
+
+  // Стандартные элементы (скрыты через CSS)
   const h4 = document.createElement('h4');
   h4.classList.add('text-center');
   _i18n(h4, 'Login.Title');
@@ -207,7 +241,15 @@ const onFirstMount = () => {
   subtitle.classList.add('subtitle', 'text-center');
   _i18n(subtitle, 'Login.StartText');
 
-  page.pageEl.querySelector('.container').append(h4, subtitle, inputWrapper);
+  page.pageEl.querySelector('.container').append(
+    h4,
+    subtitle,
+    telegramWebTitle,
+    telegramWebSubtitle,
+    qrAuthLink,
+    inputWrapper,
+    footerInfo
+  );
 
   const tryAgain = () => {
     rootScope.managers.apiManager.invokeApi('help.getNearestDc').then((nearestDcResult) => {
